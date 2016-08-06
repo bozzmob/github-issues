@@ -1,4 +1,6 @@
 var githubIssues = (function() {
+
+	//The only function exposed to the outside world, getIssueCounts
     var publicAPI = {
         getIssueCounts: function() {
         	document.getElementById('issuesTable').hidden = false;
@@ -14,6 +16,7 @@ var githubIssues = (function() {
     }
     return publicAPI;
 
+    //Validating URL format
     function validURL() {
         var repoURL = document.getElementById("issuesUrlText").value;
         var errorMessageDiv = document.getElementById("errorMessage");
@@ -24,6 +27,7 @@ var githubIssues = (function() {
             var urlGroups = repoURL.split('/');
             if (urlGroups[0] == "https:" && urlGroups[1] == "" && urlGroups[2] == "github.com" && urlGroups[3] != "" && urlGroups[4] != "") {
                 var apiurl = 'https://api.github.com/search/issues?q=is:open+repo:' + urlGroups[3] + '/' + urlGroups[4];
+                errorMessageDiv.innerHTML = "";
                 return apiurl;
             } else {
                 errorMessageDiv.innerHTML = "Please Enter a Valid URL of the format https://github.com/USER/REPOSITORY-NAME";
@@ -32,30 +36,32 @@ var githubIssues = (function() {
         }
     }
 
+    //Micro functions that get counts of issues in different timeframe. Basically construct URL's and invoke the API
+
+    //Get Total Count
     function getTotalCount(key, url) {
         getDataFromURL(key, url);
     }
 
-    function getCountOfTimePeriods() {
-        var last24hrs = getLast24hrsCount("Last24hrsCount", url);
-        var olderthan7days = getOlderThan7daysCount("olderthan7daysCount", url);
-    }
-
+    //Get Last 24 hours count
     function getLast24hrsCount(key, url) {
         url += "+created:>" + moment().subtract(24, "hours").format('YYYY-MM-DD');
         getDataFromURL(key, url);
     }
 
+    //Get count of issues between 24hrs and 7days
     function getLast24hrsto7daysCount(key, url) {
         url += "+created:" + moment().subtract(7, "days").format('YYYY-MM-DD') + ".." + moment().subtract(24, "hours").format('YYYY-MM-DD');
         getDataFromURL(key, url);
     }
 
+    //Get count of issues that are older than 7days
     function getOlderThan7daysCount(key, url) {
         url += "+created:<" + moment().subtract(7, "days").format('YYYY-MM-DD');
         getDataFromURL(key, url);
     }
 
+    //Get's total count from the custom URL(which is the API) passed.
     function getDataFromURL(key, url) {
         console.log(" URL " + url);
         var fetchDataPromise = new Promise(function(resolve, reject) {
