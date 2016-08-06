@@ -1,4 +1,4 @@
-# github-issues
+# Github Issues
 
 ## Basic Features
 
@@ -12,8 +12,12 @@
 
 
 
-## Next Steps-
+## Next Steps
 
 - Display table of Issues with relevant information
 
 - Better Styling support
+
+### Demo
+
+https://bozzmob.github.io/github-issues
