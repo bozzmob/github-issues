@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Github Issues</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Github Issues</h2>
+
+
+        <div class="input-group">
+            <input placeholder="https://github.com/facebook/react-native" type="text" class="form-control" id="issuesUrlText">
+
+            <span class="input-group-btn">
+                  <button class = "btn btn-default" type = "button" id="submitIssuesBtn" onclick="githubIssues.getIssueCounts();">
+                     Go
+                  </button>
+               </span>
+            <br/>
+            
+        </div>
+		<div id="errorMessage" style="color: red;font-weight: bold"></div>
+        <div id="issuesTable" hidden="true">
+            <h2>Issues Count</h2>
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>Total issues</th>
+                        <th>Issues in Last 24hrs</th>
+                        <th>Issues from &lt; 24hrs to &gt; 7days</th>
+                        <th>Issues &gt; 7days</th>
+                    </tr>
+                    <tr>
+                        <td id="TotalCount"></td>
+                        <td id="Last24hrsCount"></td>
+                        <td id="Last24hrsto7daysCount"></td>
+                        <td id="olderthan7daysCount"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="lib/js/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/js/moment.min.js"></script>
+    <script type="text/javascript" src="githubissues.js"></script>
+</body>
+
+</html>
