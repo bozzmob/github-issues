@@ -13,30 +13,43 @@
 
 
 <div class = "input-group">
-               <input placeholder="https://github.com/Shippable/support" type = "text" class = "form-control" id="issuesUrlText">
+               <input placeholder="https://github.com/Shippable/support" type = "text" class = "form-control" id="issuesUrlText" value="https://github.com/Shippable/support">
                
                <span class = "input-group-btn">
-                  <button class = "btn btn-default" type = "button" id="submitIssuesBtn" onclick="getIssueCounts();">
+                  <button class = "btn btn-default" type = "button" id="submitIssuesBtn" onclick="githubIssues.getIssueCounts();">
                      Go
                   </button>
                </span>
                <br/><div id="errorMessage" style="color: red;font-weight: bold"></div>
             </div>
 
-
+<div id="issuesTable">
+<h2>Issues Count</h2>
+	<div class="table-responsive">
+	<table class="table"><tr><th>Total issues</th><th>Issues in Last 24hrs</th>
+	<th>Issues from &lt; 24hrs to &gt; 7days</th><th>Issues &gt; 7days</th></tr>
+	<tr><td id="TotalCount"></td>
+	<td id="Last24hrsCount"></td>
+	<td id="Last24hrsto7daysCount"></td>
+	<td id="olderthan7daysCount"></td></tr>
+	</table>
+	</div>
+</div>
 
 <!-- <h4><span class="label label-default">New</span>
 <span class="label label-primary">New</span>
 <span class="label label-success">New</span>
 <span class="label label-warning">New</span></h4> -->
 
-  <ul class="list-group">
+<!--   <ul class="list-group">
     <li class="list-group-item"><span class="badge">12</span> New</li>
     <li class="list-group-item"><span class="badge">5</span> Deleted</li>  
     <li class="list-group-item"><span class="badge">388</span> Warnings<br/>hhhh</li>  
-  </ul>
+  </ul> -->
 </div>
 <script type="text/javascript" src="lib/js/jquery.min.js"></script>
   <script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="lib/js/moment.min.js"></script>
+  <script type="text/javascript" src="githubissues.js"></script>
 </body>
 </html>
